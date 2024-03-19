@@ -36,7 +36,10 @@ jobs:
           cd third_party/OpenROAD-flow-scripts/
           ./etc/DockerHelper.sh create -os=ubuntu22.04 -target=builder
           cd -
-          docker image tag openroad:flow-ubuntu22.04-builder:latest openroad-codespace:latest
+
+      - name: Build container image
+        run: |
+          docker image tag docker.io/openroad/flow-ubuntu22.04-builder:latest openroad-codespace:latest
 
       - name: Login to GitHub Container Registry (GHCR)
         if: github.event_name != 'pull_request' && github.repository == 'antmicro/openroad-codespace'
@@ -48,4 +51,4 @@ jobs:
 
       - name: Push container image to GitHub Container Registry (GHCR)
         if: github.event_name != 'pull_request' && github.repository == 'antmicro/openroad-codespace'
-        run: docker push openroad/ubuntu22.04-builder:latest
+        run: docker push openroad-codespace:latest
