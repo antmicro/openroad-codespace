@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout this repository
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Build container image
         # run: docker build --tag openroad-codespace:ubuntu-22-04 -f Dockerfile
