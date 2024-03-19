@@ -1,6 +1,6 @@
 {
   // "build": { "dockerfile": "Dockerfile" },
-  "image":"ghcr.io/antmicro/openroad-codespace:debian_12",
+  "image":"ghcr.io/antmicro/openroad-codespace:latest",
   "features": {
     "ghcr.io/devcontainers/features/desktop-lite:1": {}
   },
