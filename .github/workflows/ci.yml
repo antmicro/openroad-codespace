@@ -1,0 +1,38 @@
+name: Build OpenROAD Docker
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+      - cron: '0 */24 * * *'
+
+jobs:
+  build-docker:
+    env:
+        REPOSITORY_NAME: openroad-codespace
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v4
+
+      - name: Build container image
+        # run: docker build --tag openroad-codespace:ubuntu-22-04 -f Dockerfile
+        run: |
+          cd third_party/OpenROAD-flow-scripts/tools/OpenROAD/
+          ./etc/DockerHelper.sh create -compiler=clang -os=ubuntu22.04 -target=builder
+          cd -
+
+      - name: Login to GitHub Container Registry (GHCR)
+        if: github.event_name != 'pull_request' && github.repository == 'antmicro/openroad-codespace'
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: gha
+          password: ${{ github.token }}
+
+      - name: Push container image to GitHub Container Registry (GHCR)
+        if: github.event_name != 'pull_request' && github.repository == 'antmicro/openroad-codespace'
+        run: docker push openroad/ubuntu22.04-builder:latest
