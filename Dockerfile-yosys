@@ -1,0 +1,10 @@
+# Copyright (c) 2024 Antmicro <www.antmicro.com>
+# SPDX-License-Identifier: Apache-2.0
+
+FROM ubuntu:22.04
+
+COPY ./scripts/install-yosys.sh /usr/local/bin/install-yosys.sh
+RUN bash /usr/local/bin/install-yosys.sh
+
+# ENV PATH="$PATH:/opt/oss-cad-suite/bin"
+# ENV YOSYS_CMD=/opt/oss-cad-suite/bin/yosys
