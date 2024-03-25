@@ -11,9 +11,10 @@ The goal is to provide a web browser experience of the OpenROAD GUI. Solution wo
 5. Right-click on desktop and open Terminal and execute the following commands to run OpenROAD GUI
 
 ```
-cd /OpenROAD-flow-scripts
-source env.sh
-openroad -gui
+cd /OpenROAD-flow-scripts/flow
+. ../env.sh
+make
+make gui_final
 ```
 
 ### VSCode
