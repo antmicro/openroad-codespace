@@ -1,5 +1,5 @@
 {
-  "image": "ghcr.io/antmicro/openroad-flow-scripts/ubuntu22.04:latest",
+  "image": "ghcr.io/antmicro/openroad-codespace:orfs",
   "features": {
     "ghcr.io/devcontainers/features/desktop-lite:1": {}
   },

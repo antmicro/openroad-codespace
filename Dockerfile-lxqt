@@ -1,0 +1,4 @@
+FROM ghcr.io/antmicro/openroad-codespace:desktop
+
+COPY ./scripts/install-lxqt.sh /usr/local/bin/install-lxqt.sh
+RUN bash /usr/local/bin/install-lxqt.sh

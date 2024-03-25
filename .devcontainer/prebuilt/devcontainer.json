@@ -1,0 +1,10 @@
+{
+  "image": "ghcr.io/antmicro/openroad-codespace:lxqt",
+  "forwardPorts": [6080],
+  "portsAttributes": {
+    "6080": {
+      "label": "desktop"
+    }
+  }//,
+  // "onCreateCommand": "bash /workspaces/openroad-codespace/update-config.sh"
+}

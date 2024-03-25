@@ -2,13 +2,25 @@
 
 The goal is to provide a web browser experience of the OpenROAD GUI. Solution works with Firefox and Chrome.
 
+First time Codespace users are encouraged to read the tutorial [creating a codespace for a repository](https://docs.github.com/en/codespaces/developing-in-a-codespace/creating-a-codespace-for-a-repository).
+
 ## User
 
-1. First time users are encourage to read the tutorial [creating a codespace for a repository](https://docs.github.com/en/codespaces/developing-in-a-codespace/creating-a-codespace-for-a-repository). Follow this tutorial to create a codespace from the ORFS repository. Select `ubuntu gui` in the `Dev container configuration` field
-2. Connect to the generated codespace
-3. At the bottom, there should be tab `PORTS`, where you will find the `Forwarded Address`. Follow this link
-4. NoVNC tab should open - default password is `vscode`.
-5. Right-click on desktop and open Terminal and execute the following commands to run OpenROAD GUI
+1. Create a codespace from this repository.
+
+![create](https://github.com/antmicro/openroad-codespace/blob/mczyz/dev/img/create_codespace.gif)
+
+2. Select `ubuntu gui` in the `Dev container configuration` field
+
+![configure](https://github.com/antmicro/openroad-codespace/blob/mczyz/dev/img/configure_codespace.gif)
+
+3. Connect to the generated codespace
+4. At the bottom, there should be tab `PORTS`, where you will find the `Forwarded Address`. Follow this link to connect to NoVNC
+
+![open](https://github.com/antmicro/openroad-codespace/blob/mczyz/dev/img/open_vnc.gif)
+
+5. NoVNC tab should open - default password is `vscode`.
+6. Right-click on desktop and open Terminal and execute the following commands to run OpenROAD GUI
 
 ```
 cd /OpenROAD-flow-scripts/flow
