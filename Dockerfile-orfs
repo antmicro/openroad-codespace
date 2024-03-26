@@ -4,3 +4,6 @@ COPY ./scripts/install.sh /usr/local/bin/install.sh
 RUN bash /usr/local/bin/install.sh
 
 ENV PATH="$PATH:/opt/oss-cad-suite/bin"
+
+ENV OPENROAD_EXE=/usr/bin/openroad
+ENV YOSYS_CMD=/opt/oss-cad-suite/bin/yosys
