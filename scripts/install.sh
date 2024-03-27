@@ -4,7 +4,7 @@ export KLAYOUT_VER=${KLAYOUT_VER:-0.28.17-1}
 export DEBIAN_FRONTEND=noninteractive
 
 apt-get -qqy update
-apt-get install -qqy --no-install-recommends git wget ca-certificates make libqt5charts
+apt-get install -qqy --no-install-recommends git wget ca-certificates make
 
 update-ca-certificates
 wget https://www.klayout.org/downloads/Ubuntu-22/klayout_${KLAYOUT_VER}_amd64.deb

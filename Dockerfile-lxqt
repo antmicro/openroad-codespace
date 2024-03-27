@@ -1,5 +1,12 @@
 FROM ghcr.io/antmicro/openroad-codespace:orfs
 
+COPY ./scripts/common.sh /usr/local/bin/common.sh
+COPY ./scripts/install-desktop-deps.sh /usr/local/bin/install-desktop-deps.sh
+RUN bash /usr/local/bin/install-desktop-deps.sh
+
 COPY ./scripts/install-desktop.sh /usr/local/bin/install-desktop.sh
 RUN bash /usr/local/bin/install-desktop.sh
 RUN chsh -s /bin/bash
+
+ENV DISPLAY=:1
+ENTRYPOINT [ "/usr/local/share/desktop-init.sh" ]

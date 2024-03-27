@@ -5,6 +5,5 @@
     "6080": {
       "label": "desktop"
     }
-  }//,
-  // "onCreateCommand": "bash /workspaces/openroad-codespace/update-config.sh"
+  },
 }

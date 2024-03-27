@@ -9,6 +9,8 @@
 
 # TODO: Add Antmicro license header
 
+. common.sh
+
 NOVNC_VERSION="${NOVNCVERSION:-"1.2.0"}" # TODO: Add in a 'latest' auto-detect and swap name to 'version'
 VNC_PASSWORD=${PASSWORD:-"vscode"}
 NOVNC_PORT="${WEBPORT:-6080}"
@@ -18,57 +20,6 @@ INSTALL_NOVNC="${INSTALL_NOVNC:-"true"}"
 USERNAME="${USERNAME:-"${_REMOTE_USER:-"automatic"}"}"
 
 WEBSOCKETIFY_VERSION=0.10.0
-
-package_list="
-    tigervnc-standalone-server \
-    tigervnc-common \
-    dbus-x11 \
-    x11-utils \
-    x11-xserver-utils \
-    xdg-utils \
-    fbautostart \
-    at-spi2-core \
-    xterm \
-    eterm \
-    nautilus\
-    mousepad \
-    seahorse \
-    gnome-icon-theme \
-    gnome-keyring \
-    libx11-dev \
-    libxkbfile-dev \
-    libsecret-1-dev \
-    libgbm-dev \
-    libnotify4 \
-    libnss3 \
-    libxss1 \
-    libasound2 \
-    xfonts-base \
-    xfonts-terminus \
-    fonts-noto \
-    fonts-wqy-microhei \
-    fonts-droid-fallback \
-    htop \
-    ncdu \
-    curl \
-    ca-certificates\
-    unzip \
-    nano \
-    locales \
-    xfwm4 \
-    lxqt \
-    breeze-icon-theme \
-    "
-
-# Packages to attempt to install if essential tools are missing (ie: vncpasswd).
-# This is useful, at least, for Ubuntu 22.04 (jammy)
-package_list_additional="
-    tigervnc-tools"
-
-set -e
-
-# Clean up
-rm -rf /var/lib/apt/lists/*
 
 if [ "$(id -u)" -ne 0 ]; then
     echo -e 'Script must be run as root. Use sudo, su, or add "USER root" to your Dockerfile before running this script.'
@@ -92,21 +43,7 @@ elif [ "${USERNAME}" = "none" ] || ! id -u ${USERNAME} > /dev/null 2>&1; then
     USERNAME=root
 fi
 
-apt_get_update()
-{
-    if [ "$(find /var/lib/apt/lists/* | wc -l)" = "0" ]; then
-        echo "Running apt-get update..."
-        apt-get update -y
-    fi
-}
 
-# Checks if packages are installed and installs them if not
-check_packages() {
-    if ! dpkg -s "$@" > /dev/null 2>&1; then
-        apt_get_update
-        apt-get -y install --no-install-recommends "$@"
-    fi
-}
 
 ##########################
 #  Install starts here   #
@@ -116,15 +53,6 @@ check_packages() {
 export DEBIAN_FRONTEND=noninteractive
 
 apt_get_update
-
-# Install X11, fluxbox and VS Code dependencies
-check_packages ${package_list}
-
-# On newer versions of Ubuntu (22.04),
-# we need an additional package that isn't provided in earlier versions
-if ! type vncpasswd > /dev/null 2>&1; then
-    check_packages ${package_list_additional}
-fi
 
 # Check at least one locale exists
 if ! grep -o -E '^\s*en_US.UTF-8\s+UTF-8' /etc/locale.gen > /dev/null; then
@@ -301,9 +229,6 @@ EOF
 echo "${VNC_PASSWORD}" | vncpasswd -f > /usr/local/etc/vscode-dev-containers/vnc-passwd
 chmod +x /usr/local/share/desktop-init.sh /usr/local/bin/set-resolution
 
-# Clean up
-rm -rf /var/lib/apt/lists/*
-
 cat << EOF
 
 You now have a working desktop! Connect to in one of the following ways:
@@ -316,7 +241,6 @@ In both cases, use the password "${VNC_PASSWORD}" when connecting
 (*) Done!
 
 EOF
-
 
 # TODO: Install more themes
 # git clone https://github.com/lxqt/lxqt-themes.git
