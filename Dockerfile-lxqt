@@ -9,4 +9,4 @@ RUN bash /usr/local/bin/install-desktop.sh
 RUN chsh -s /bin/bash
 
 ENV DISPLAY=:1
-ENTRYPOINT [ "/usr/local/share/desktop-init.sh" ]
+

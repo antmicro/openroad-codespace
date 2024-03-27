@@ -28,7 +28,7 @@ First time Codespace users are encouraged to read the tutorial [creating a codes
 3. Right-click on desktop and open Terminal and execute the following commands to run OpenROAD GUI
 
 ```
-cd /OpenROAD-flow-scripts/flow
+cd ~/OpenROAD-flow-scripts/flow
 . ../env.sh
 make
 make gui_final
@@ -58,7 +58,7 @@ Desktop initialization is performed in:
 
 ## Developer
 
-OpenROAD Flow Scripts provide a docker image generation script `etc/DockerHelper.sh`, which is used here to build and publish the image to GH registry.
+ORFS docker images is now built with available binaries. In CI configuration, you will find steps to reproduce the required docker images.
 
 Useful resources:
 * [Development loop](https://code.visualstudio.com/docs/devcontainers/create-dev-container#_full-configuration-edit-loop)

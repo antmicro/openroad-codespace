@@ -6,4 +6,5 @@
       "label": "desktop"
     }
   },
+  "postStartCommand": "bash /usr/local/share/desktop-init.sh"
 }
