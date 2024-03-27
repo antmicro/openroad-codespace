@@ -6,5 +6,5 @@
       "label": "desktop"
     }
   },
-  "postStartCommand": "bash /usr/local/share/desktop-init.sh"
+  "postAttachCommand": "bash /usr/local/share/desktop-init.sh"
 }
