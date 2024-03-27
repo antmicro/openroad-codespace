@@ -117,25 +117,6 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt_get_update
 
-# On older Ubuntu, Tilix is in a PPA. on Debian stretch its in backports.
-if [[ -z $(apt-cache --names-only search ^tilix$) ]]; then
-    . /etc/os-release
-    if [ "${ID}" = "ubuntu" ]; then
-        check_packages apt-transport-https software-properties-common
-        add-apt-repository -y ppa:webupd8team/terminix
-    elif [ "${VERSION_CODENAME}" = "stretch" ]; then
-        echo "deb http://deb.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/stretch-backports.list
-    fi
-    apt-get update
-    if [[ -z $(apt-cache --names-only search ^tilix$) ]]; then
-        echo "(!) WARNING: Tilix not available on ${ID} ${VERSION_CODENAME} architecture $(uname -m). Skipping."
-    else
-        package_list="${package_list} tilix"
-    fi
-else
-    package_list="${package_list} tilix"
-fi
-
 # Install X11, fluxbox and VS Code dependencies
 check_packages ${package_list}
 
@@ -143,11 +124,6 @@ check_packages ${package_list}
 # we need an additional package that isn't provided in earlier versions
 if ! type vncpasswd > /dev/null 2>&1; then
     check_packages ${package_list_additional}
-fi
-
-# Install Emoji font if available in distro - Available in Debian 10+, Ubuntu 18.04+
-if dpkg-query -W fonts-noto-color-emoji > /dev/null 2>&1 && ! dpkg -s fonts-noto-color-emoji > /dev/null 2>&1; then
-    apt-get -y install --no-install-recommends fonts-noto-color-emoji
 fi
 
 # Check at least one locale exists

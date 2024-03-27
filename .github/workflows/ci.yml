@@ -36,15 +36,15 @@ jobs:
         if: github.event_name != 'pull_request' && github.repository == 'antmicro/openroad-codespace'
         run: docker push ghcr.io/antmicro/openroad-codespace:orfs
 
-      - name: Devcontainer build
-        run: |
-          npm install -g @devcontainers/cli
-          devcontainer build --config .devcontainer/ubuntu-gui/devcontainer.json --workspace-folder . --push false --image-name ghcr.io/antmicro/openroad-codespace:desktop
-          # docker image tag test:latest ghcr.io/antmicro/openroad-codespace:test
+      # - name: Devcontainer build
+      #   run: |
+      #     npm install -g @devcontainers/cli
+      #     devcontainer build --config .devcontainer/ubuntu-gui/devcontainer.json --workspace-folder . --push false --image-name ghcr.io/antmicro/openroad-codespace:desktop
+      #     # docker image tag test:latest ghcr.io/antmicro/openroad-codespace:test
 
-      - name: Push container image to GitHub Container Registry (GHCR)
-        if: github.event_name != 'pull_request' && github.repository == 'antmicro/openroad-codespace'
-        run: docker push ghcr.io/antmicro/openroad-codespace:desktop
+      # - name: Push container image to GitHub Container Registry (GHCR)
+      #   if: github.event_name != 'pull_request' && github.repository == 'antmicro/openroad-codespace'
+      #   run: docker push ghcr.io/antmicro/openroad-codespace:desktop
 
       - name: Docker build
         run: |

@@ -18,6 +18,8 @@ First time Codespace users are encouraged to read the tutorial [creating a codes
 
 ## Using the Codespace
 
+### OpenROAD GUI
+
 1. At the bottom, there should be tab `PORTS`, where you will find the `Forwarded Address`. A link is provided, which you can follow to open the OpenROAD GUI
 
 ![open](https://github.com/antmicro/openroad-codespace/blob/mczyz/dev/img/open_vnc.gif)
@@ -30,6 +32,20 @@ cd /OpenROAD-flow-scripts/flow
 . ../env.sh
 make
 make gui_final
+```
+
+### Useful scripts
+
+You can change the resolution with script:
+
+```
+/usr/local/bin/set-resolution
+```
+
+Desktop initialization is performed in:
+
+```
+/usr/local/share/desktop-init.sh
 ```
 
 ## VSCode
@@ -51,4 +67,4 @@ Useful resources:
 
 ### Desktop-lite feature
 
-The desktop-lite feature is provided by the [devcontainers organization](https://github.com/devcontainers/features/tree/main/src/desktop-lite). In this repo, a modified version of the feature is used via the [update-link] script.
+The desktop-lite feature is provided by the [devcontainers organization](https://github.com/devcontainers/features/tree/main/src/desktop-lite). In this repo, a modified version of the feature is used via the [TODO-link] script.
